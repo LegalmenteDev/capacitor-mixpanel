@@ -10,16 +10,18 @@ import Mixpanel
 public class MixpanelPlugin: CAPPlugin {
     override public func load() {
         let token = getConfig().getString("token") ?? "MIXPANEL_TOKEN_REQUIRED"
-        let serverURL = getConfig().getString("serverUrl", "https://api.mixpanel.com")
+        let serverURL = getConfig().getString("serverURL", "https://api.mixpanel.com")
         let optOutTrackingByDefault = getConfig().getBoolean("optOutTrackingByDefault", false)
         let trackAutomaticEvents = getConfig().getBoolean("trackAutomaticEvents", true)
         let disableIpCollection = getConfig().getBoolean("disableIosIpCollection", false)
+        let superProperties = getConfig().getObject("superProperties") ?? [:]
 
         let instance = Mixpanel.initialize(
             token: token,
             trackAutomaticEvents: trackAutomaticEvents,
             optOutTrackingByDefault: optOutTrackingByDefault,
-            serverURL: serverURL
+            serverURL: serverURL,
+            superProperties: superProperties
         )
         instance.useIPAddressForGeoLocation = !disableIpCollection
     }

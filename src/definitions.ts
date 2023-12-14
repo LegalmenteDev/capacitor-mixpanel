@@ -28,7 +28,7 @@ export interface InitializeOptions {
   /**
    * Enable or disable debug mode
    *
-   * @default false
+   * @default null
    */
   serverURL?: string;
 }
@@ -283,6 +283,13 @@ declare module '@capacitor/cli' {
        * @example "https://api-eu.mixpanel.com/"
        */
       serverURL?: string;
+
+      /**
+       * Set superProperties on Android and iOS instance
+       *
+       * @default null
+       */
+      superProperties?: Record<string, any>;
     };
   }
 }
