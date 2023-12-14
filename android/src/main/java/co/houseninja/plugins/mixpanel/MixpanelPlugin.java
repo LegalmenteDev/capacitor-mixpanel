@@ -19,15 +19,15 @@ public class MixpanelPlugin extends Plugin {
     @Override
     public void load() {
         String token = getConfig().getString("token");
-        String serverUrl = getConfig().getString("serverUrl", "https://api.mixpanel.com");
+        String serverURL = getConfig().getString("serverURL", "https://api.mixpanel.com");
         boolean trackAutomaticEvents = getConfig().getBoolean("trackAutomaticEvents", true);
         boolean optOutTrackingByDefault = getConfig().getBoolean("optOutTrackingByDefault", false);
         JSONObject superProperties = getConfig().getObject("superProperties");
         String instanceName = "mixpanel";
         mixpanel = MixpanelAPI.getInstance(getContext(), token, optOutTrackingByDefault, superProperties, instanceName, trackAutomaticEvents);
 
-        if (serverUrl != null) {
-            mixpanel.setServerURL(serverUrl);
+        if (serverURL != null) {
+            mixpanel.setServerURL(serverURL);
         }
 
         // load parent
